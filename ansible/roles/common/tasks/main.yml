@@ -1,0 +1,23 @@
+---
+- name: Install common package
+  become: yes
+  yum:
+    name: "{{items}}"
+    state: latest
+  vars:
+    items:
+      - gcc-c++
+      - make
+      - patch
+      - git
+      - curl
+      - zlib-devel
+      - openssl-devel
+      - ImageMagick-devel
+      - readline-devel
+      - libcurl-devel
+      - libffi-devel
+      - libyaml-devel
+      - libicu-devel
+      - libxml2-devel
+      - libxslt-devel

@@ -1,0 +1,19 @@
+---
+- name: Install nginx
+  yum:
+    name: http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+    state: present
+  become: yes
+
+- name: Install nginx package
+  yum:
+    name: nginx
+    state: latest
+  become: yes
+
+- name: Set auto start nginx
+  become: yes
+  shell: chkconfig nginx on
+
+- name: Restart nginx
+  shell: service nginx restart

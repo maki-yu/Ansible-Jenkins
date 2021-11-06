@@ -1,0 +1,24 @@
+---
+- name: Remove mariadb-libs
+  yum:
+    state: absent
+    lock_timeout: 180
+
+- name: Add mysql 8.0 repository
+  yum:
+    name: https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+    lock_timeout: 180
+
+- name: Install mysql
+  yum:
+    name: mysql-community-server
+    state: absent
+    lock_timeout: 180
+  when: not ansible_check_mode
+
+- name: Install mysql
+  yum:
+    name: mysql-community-devel
+    state: absent
+    lock_timeout: 180
+  when: not ansible_check_mode

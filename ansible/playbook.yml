@@ -1,0 +1,9 @@
+---
+- hosts: target
+  become: yes
+  roles:
+    - common
+    - mysql
+    - nginx
+    - nodejs
+    - ruby

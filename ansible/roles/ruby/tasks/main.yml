@@ -1,0 +1,28 @@
+---
+- name: Install rbenv
+  git:
+    repo: https://github.com/sstephenson/rbenv.git
+    dest: /usr/local/rbenv
+
+- name: Edit bashrc
+  template:
+    src: roles/ruby/templates/rbenv_system.sh.j2
+    dest: /etc/profile.d/rbenv.sh
+
+- name: Install ruby-build
+  git:
+    repo: https://github.com/sstephenson/ruby-build.git
+    dest: /usr/local/rbenv/plugins/ruby-build
+
+- name: Install ruby
+  shell: bash -lc "rbenv install -s 2.7.3"
+
+- name: Set default Ruby version
+  shell: bash -lc "rbenv global 2.7.3 && rbenv rehash"
+
+- name: Install bundler and so on
+  shell: bash -lc "gem install {{ item }}"
+  with_item:
+    - rbenv-rehash
+    - bundler -v 2.2.19
+    - rails -v 6.1.3
