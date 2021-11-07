@@ -22,7 +22,11 @@
 
 - name: Install bundler and so on
   shell: bash -lc "gem install {{ item }}"
-  with_item:
+  with_items:
     - rbenv-rehash
-    - bundler -v 2.2.19
-    - rails -v 6.1.3
+    - bundler
+
+- name: Install Rails
+  shell: bash -lc "gem install rails -v 6.1.3"
+  ignore_errors: yes
+  
