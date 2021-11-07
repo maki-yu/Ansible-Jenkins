@@ -34,7 +34,7 @@
 - 紐づいていないElasticIPを1個
 
 ## 実行手順
-1. 用意したサーバーにJenkinsをインストール
+### 1. 用意したサーバーにJenkinsをインストール
 ```
 $ sudo wget -O /etc/yum.repos.d/jenkins.repo \
     https://pkg.jenkins.io/redhat-stable/jenkins.repo
