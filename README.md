@@ -93,7 +93,7 @@ $ ssh-keygen -t rsa -b 4096
 - 接続を確認
 ```
 $ ssh -T git@github.com
-# Hi! name と表示されたら完了
+# Hi! name〜 と表示されたら完了
 ```
 
 ### 6. AWS CLIの設定
