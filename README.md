@@ -53,32 +53,33 @@ $ sudo systemctl status jenkins
 ```
 
 ### 3. Jenkinsにアクセス
-以下URLより、Jenkinsにアクセス
+- 以下URLより、Jenkinsにアクセス
 ```
 http://<jenkinsが起動しているサーバのIPv4アドレス>:8080
 ```
-初期パスワードの入力、プラグインのインストール、初期設定、インスタンスURLの設定を実行
+- 初期パスワードの入力、プラグインのインストール、初期設定、インスタンスURLの設定を実行
 
 ### 4. ジョブ実行ユーザーの変更
-以下ファイルの"JENKINS_USER"を変更
+- 以下ファイルの"JENKINS_USER"を変更
 ```
 $ sudo vi /etc/sysconfig/jenkins
-# "jenkins"から"ec2-user"
+
+# "jenkins"から"ec2-user"に変更する
 JENKINS_USER="jenkins"
  　　　　　↓↓
 JENKINS_USER="ec2-user"
 ```
-ジョブ実行に関するディレクトリやファイルの権限を変更する
+- ジョブ実行に関するディレクトリやファイルの権限を変更する
 ```
 $ sudo chown -R ec2-user: /var/lib/jenkins /var/log/jenkins /var/cache/jenkins
 ```
-Jenkinsのプロセスを再起動する
+- Jenkinsのプロセスを再起動する
 ```
 $ sudo systemctl restart jenkins.service
 ```
 
 ### 5. GitHubにSSH接続するための設定
-GitHubのリポジトリからcloneする際にSSH接続をするため、設定を行う
+*GitHubのリポジトリからcloneする際にSSH接続をするため、設定を行う*
 
 - gitをインストール
 ```
@@ -92,11 +93,11 @@ $ ssh-keygen -t rsa -b 4096
 - 接続を確認
 ```
 $ ssh -T git@github.com
+# Hi! name と表示されたら完了
 ```
-Hi! name と表示されたら完了
 
 ### 6. AWS CLIの設定
-JenkinsでCFnのスタックを作成するために、AWS CLIの設定を行う
+*JenkinsでCFnのスタックを作成するために、AWS CLIの設定を行う*
 
 - Jenkins用にIAMユーザーを作成し、secret keyを作成
 - Credentialの設定
@@ -109,8 +110,11 @@ Default output format [None]:
 ```
 
 ### 7. ジョブ作成とビルド実行
+- 下記のジョブを作成する
+```
 - CFnのテンプレートをリポジトリよりclone
 - CFnのスタック作成
 - Ansibleのテンプレートをリポジトリよりclone
 - Ansible実行
-上記のジョブを繋ぎ、ビルドを実行する
+```
+- 上記のジョブを繋ぎ、ビルドを実行する
