@@ -59,7 +59,14 @@ http://<jenkinsが起動しているサーバのIPv4アドレス>:8080
 ```
 - 初期パスワードの入力、プラグインのインストール、初期設定、インスタンスURLの設定を実行
 
-### 4. ジョブ実行ユーザーの変更
+### 4. サーバーに秘密鍵を配置
+**ビルド実行の際にキーペアとなっている秘密鍵が必要となるため、サーバーに秘密鍵を配置する**
+- ローカルPCからサーバーに対して秘密鍵をコピーする
+```
+$ scp -i <コントロールノードへのssh接続で使用する秘密鍵> <ローカルの秘密鍵ファイルPATH> <ユーザ名>@<接続先IPv4アドレス>:<秘密鍵の配置先PATH>
+```
+
+### 5. ジョブ実行ユーザーの変更
 - 以下ファイルの"JENKINS_USER"を変更
 ```
 $ sudo vi /etc/sysconfig/jenkins
@@ -78,7 +85,7 @@ $ sudo chown -R ec2-user: /var/lib/jenkins /var/log/jenkins /var/cache/jenkins
 $ sudo systemctl restart jenkins.service
 ```
 
-### 5. GitHubにSSH接続するための設定
+### 6. GitHubにSSH接続するための設定
 **GitHubのリポジトリからcloneする際にSSH接続をするため、設定を行う**
 
 - gitをインストール
@@ -96,7 +103,7 @@ $ ssh -T git@github.com
 # Hi! name〜 と表示されたら完了
 ```
 
-### 6. AWS CLIの設定
+### 7. AWS CLIの設定
 **JenkinsでCFnのスタックを作成するために、AWS CLIの設定を行う**
 
 - Jenkins用にIAMユーザーを作成し、secret keyを作成
@@ -109,7 +116,7 @@ Default region name [None]:
 Default output format [None]: 
 ```
 
-### 7. ジョブ作成とビルド実行
+### 8. ジョブ作成とビルド実行
 - 下記のジョブを作成する
 ```
 - CFnのテンプレートをリポジトリよりclone
