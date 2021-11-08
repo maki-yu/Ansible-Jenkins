@@ -79,7 +79,7 @@ $ sudo systemctl restart jenkins.service
 ```
 
 ### 5. GitHubにSSH接続するための設定
-*GitHubのリポジトリからcloneする際にSSH接続をするため、設定を行う*
+**GitHubのリポジトリからcloneする際にSSH接続をするため、設定を行う**
 
 - gitをインストール
 ```
@@ -97,7 +97,7 @@ $ ssh -T git@github.com
 ```
 
 ### 6. AWS CLIの設定
-*JenkinsでCFnのスタックを作成するために、AWS CLIの設定を行う*
+**JenkinsでCFnのスタックを作成するために、AWS CLIの設定を行う**
 
 - Jenkins用にIAMユーザーを作成し、secret keyを作成
 - Credentialの設定
